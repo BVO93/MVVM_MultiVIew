@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_MultiViewExample\MVVM_Mulitview\obj\Debug\
+C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\obj\Debug\
 MVVM_Mulitview
 none
 false
 DEBUG;TRACE
-C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_MultiViewExample\MVVM_Mulitview\App.xaml
-2-2126978518
+C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\App.xaml
+3429138782
 
-111038331339
-131569487696
-MainWindow.xaml;View\CustomersView.xaml;
+18252706121
+181093384525
+MainWindow.xaml;View\CustomersView.xaml;View\ProductsView.xaml;
 
 False
 

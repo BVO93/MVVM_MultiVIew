@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:MVVM_Mulitview.View"
-        xmlns:local="clr-namespace:MVVM_Mulitview"
+        xmlns:viewModel ="clr-namespace:MVVM_Mulitview.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:CustomersViewModel}">
+            <view:CustomersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ProductsViewModel}">
+            <view:ProductsView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,8 +28,12 @@
 
         <Menu FontSize="20">
             <MenuItem Header="_View">
-                <MenuItem Header="_Customers"/>
-                <MenuItem Header="_Products"/>
+                <MenuItem Header="_Customers"
+                          Command="{Binding SelectViewModelCommand}"
+                          CommandParameter="{Binding CustomersViewModel}"/>
+                <MenuItem Header="_Products"
+                          Command="{Binding SelectViewModelCommand}"
+                          CommandParameter="{Binding ProductsViewModel}"/>
             </MenuItem>
         </Menu>
 

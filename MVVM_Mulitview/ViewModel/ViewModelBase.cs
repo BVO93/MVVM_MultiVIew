@@ -20,5 +20,10 @@ namespace MVVM_Mulitview.ViewModel
 
         }
 
+
+
+        public virtual Task LoadAsync() => Task.CompletedTask;
+
+
     }
 }

@@ -35,8 +35,11 @@ namespace MVVM_Mulitview.ViewModel
             }
         }
 
+       // public bool IsCustomerSelected => SelectedCustomer ;
 
-        public async Task LoadAsync()
+
+        /*
+        public async override Task LoadAsync()
         {
             // Check if there is already anyting in customers.
             if (Customers.Any())
@@ -55,7 +58,7 @@ namespace MVVM_Mulitview.ViewModel
            // }
 
         }
-
+        */
         // Adding customer 
         internal void Add()
         {
