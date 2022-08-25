@@ -1,4 +1,6 @@
-﻿using MVVM_Mulitview.Model;
+﻿#nullable enable
+
+using MVVM_Mulitview.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,13 @@ namespace MVVM_Mulitview.Data
 {
     public interface IProductDataProvider
     {
-        Task<IEnumerable<Product>> GetAllAsync();
+        Task<IEnumerable<Product>?> GetAllAsync();
 
     }
 
     public class ProductDatProvider : IProductDataProvider
     {
-        public async Task<IEnumerable<Product>> GetAllAsync()
+        public async Task<IEnumerable<Product>?> GetAllAsync()
         {
 
             await Task.Delay(100);

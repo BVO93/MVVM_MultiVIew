@@ -1,4 +1,6 @@
-﻿using MVVM_Mulitview.Command;
+﻿#nullable enable
+
+using MVVM_Mulitview.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace MVVM_Mulitview.ViewModel
 {
    public class MainViewModel: ViewModelBase
     {
-        private ViewModelBase _selectedViewModel;
+        private ViewModelBase? _selectedViewModel;
 
         public MainViewModel(CustomersViewModel customersViewModel, ProductsViewModel productsViewModel)
         {
@@ -21,7 +23,7 @@ namespace MVVM_Mulitview.ViewModel
         
         }
 
-        private async void SelectViewModel(object parameter)
+        private async void SelectViewModel(object? parameter)
         {
             SelectedViewModel = parameter as ViewModelBase;
             await LoadAsync();
@@ -44,7 +46,7 @@ namespace MVVM_Mulitview.ViewModel
         public DelegateCommand SelectViewModelCommand { get; }
         public async override Task LoadAsync()
         {
-            if(SelectedViewModel != null)
+            if(SelectedViewModel is not null )
             {
                 await SelectedViewModel.LoadAsync();
             }

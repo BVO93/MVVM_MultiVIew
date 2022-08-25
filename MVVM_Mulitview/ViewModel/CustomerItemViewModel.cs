@@ -1,4 +1,6 @@
-﻿using MVVM_Mulitview.Model;
+﻿#nullable enable
+
+using MVVM_Mulitview.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MVVM_Mulitview.ViewModel
 {
-    public class CustomerItemViewModel: ViewModelBase
+    public class CustomerItemViewModel: ValidationViewModelBase
     {
         // This is made so that the model does not need to be exposed to view. 
         // Problem is that if we change something in Customer (model) this is not notified to the view. 
@@ -26,17 +28,25 @@ namespace MVVM_Mulitview.ViewModel
 
             public int Id => _model.Id;
 
-            public string FirstName
+            public string? FirstName
             {
                 get => _model.FirstName;
                 set
                 {
                     _model.FirstName = value;
-                    RaisePropretyChanged();
+                RaisePropretyChanged();
+                if (string.IsNullOrEmpty(_model.FirstName))
+                {
+                    AddError("Firstname is required", nameof(FirstName));
+                }
+                else
+                {
+                    ClearErrors(nameof(FirstName));
                 }
             }
+            }
 
-            public string LastName
+            public string? LastName
             {
                 get => _model.LastName;
                 set

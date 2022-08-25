@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +16,9 @@ namespace MVVM_Mulitview.ViewModel
         private readonly Dictionary<string, List<string>> _errorByPropertyName = new Dictionary<string, List<string>>();
 
         public bool HasErrors => _errorByPropertyName.Any();
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-        public IEnumerable GetErrors(string propertyName)
+        public IEnumerable GetErrors(string? propertyName)
         {
             return propertyName != null && _errorByPropertyName.ContainsKey(propertyName)
              // if found , return errors by property name 

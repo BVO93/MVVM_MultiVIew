@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,10 +13,10 @@ namespace MVVM_Mulitview.ViewModel
     public class ViewModelBase : INotifyPropertyChanged
     {
         // The only implementation needed for INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         // Simple method to raise event
-        protected virtual void RaisePropretyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void RaisePropretyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 

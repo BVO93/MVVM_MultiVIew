@@ -6,6 +6,16 @@
              xmlns:local="clr-namespace:MVVM_Mulitview.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="CustomerDataTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding FirstName, ValidatesOnNotifyDataErrors= False }" FontWeight="Bold"></TextBlock>
+                <TextBlock Text= "{Binding LastName}" Margin="5 0 0 0"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -14,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Customer list -->
-        <Grid x:Name="customerListGrid"
+        <Grid 
           Background="#777">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -36,7 +46,7 @@
               
                 ItemsSource ="{Binding Customers}"
                 SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
-                DisplayMemberPath="FirstName"/>
+                 ItemTemplate="{StaticResource CustomerDataTemplate}"/>
 
         </Grid>
 

@@ -20,7 +20,7 @@ namespace MVVM_Mulitview.ViewModel
         }
 
 
-        public ObservableCollection<Product> Products { get; } = new ObservableCollection<Product>();
+        public ObservableCollection<Product> Products { get; } = new(); // ObservableCollection<Product>();
 
         public override async Task LoadAsync()
         {
