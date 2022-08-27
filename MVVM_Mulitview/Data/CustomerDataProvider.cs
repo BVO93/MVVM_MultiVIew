@@ -1,20 +1,18 @@
-﻿using MVVM_Mulitview.Model;
-using System;
+﻿#nullable enable 
+using MVVM_Mulitview.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MVVM_Mulitview.Data
 {
     public interface ICustomerDataProvider
     {
-        Task<IEnumerable<Customer>> GetAllAsync();
+        Task<IEnumerable<Customer>?> GetAllAsync();
     }
 
     public class CustomerDataProvider : ICustomerDataProvider
     {
-        public async Task<IEnumerable<Customer>> GetAllAsync()
+        public async Task<IEnumerable<Customer>?> GetAllAsync()
         {
             await Task.Delay(100); // Simulate a bit of server work
 

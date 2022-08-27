@@ -1,4 +1,7 @@
-﻿using MVVM_Mulitview.Data;
+﻿#nullable enable 
+
+using MVVM_Mulitview.Command;
+using MVVM_Mulitview.Data;
 using MVVM_Mulitview.Model;
 using System;
 using System.Collections.Generic;
@@ -13,18 +16,26 @@ namespace MVVM_Mulitview.ViewModel
     {
         // Providing data from dataProvider
         private readonly ICustomerDataProvider _customerDataProvider;
-        private CustomerItemViewModel _selectedCustomer;
+
+
+
+        private CustomerItemViewModel? _selectedCustomer;
+        private NavigationSide _navigationSide;
 
         public CustomersViewModel(ICustomerDataProvider customerDataProvider)
         {
             _customerDataProvider = customerDataProvider;
+            AddCommand = new DelegateCommand(Add);
+            MoveNavigationCommand = new DelegateCommand(MoveNavigation);
+            DeleteCommand = new DelegateCommand(Delete, CanDelete);
         }
 
+
         // Observes when the collection is changed and gets update
-        public ObservableCollection<CustomerItemViewModel> Customers { get; } = new ObservableCollection<CustomerItemViewModel>();  //new();
+        public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
 
         // ? can be null
-        public CustomerItemViewModel SelectedCustomer
+        public CustomerItemViewModel? SelectedCustomer
         {
             get => _selectedCustomer;
             set
@@ -32,11 +43,32 @@ namespace MVVM_Mulitview.ViewModel
                 _selectedCustomer = value;
                 // RaisePropretyChanged(nameof(SelectedCustomer));
                 RaisePropretyChanged();
+
+                RaisePropretyChanged(nameof(IsCustomerSelected));
+                DeleteCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        // We want to check if there is a cusomter selected. If not we want details like name to be invisible. 
+        // We check if customer is selected. Ans also raise the raisepropertyChanged event when a custoemr gets selected or deselected.
+        public bool IsCustomerSelected => SelectedCustomer is not null;
+
+        public NavigationSide navigationSide
+        {
+            get => _navigationSide;
+            private set
+            {
+                _navigationSide = value;
+                RaisePropretyChanged();
             }
         }
 
 
-        public async Task LoadAsync()
+        public DelegateCommand AddCommand { get; }
+        public DelegateCommand MoveNavigationCommand { get; }
+        public DelegateCommand DeleteCommand { get; }
+
+        public async override Task LoadAsync()
         {
             // Check if there is already anyting in customers.
             if (Customers.Any())
@@ -45,19 +77,18 @@ namespace MVVM_Mulitview.ViewModel
             }
             // GetAllAsync is method of dataProvider
             var customers = await _customerDataProvider.GetAllAsync();
-         //   if (customers is not null)
-          //  {
+            if (customers is not null)
+            {
                 foreach (var customer in customers)
                 {
-                    if(customer.FirstName != null)
-                        Customers.Add(new CustomerItemViewModel(customer));
+                    Customers.Add(new CustomerItemViewModel(customer));
                 }
-           // }
+            }
 
         }
 
         // Adding customer 
-        internal void Add()
+        private void Add(object? parameter)
         {
             var customer = new Customer { FirstName = "New" };
             var viewModel = new CustomerItemViewModel(customer);
@@ -66,6 +97,44 @@ namespace MVVM_Mulitview.ViewModel
 
         }
 
+        private void MoveNavigation(object? parameter)
+        {
+
+            if (_navigationSide == NavigationSide.Left)
+            {
+                navigationSide = NavigationSide.Right;
+            }
+            else
+            {
+                navigationSide = NavigationSide.Left;
+            }
+
+        }
+
+
+
+        private void Delete(object? parameter)
+        {
+            if (SelectedCustomer is not null)
+            {
+                Customers.Remove(SelectedCustomer);
+                SelectedCustomer = null;
+            }
+        }
+
+
+        private bool CanDelete(object? parameter)
+        {
+            return SelectedCustomer is not null;
+        }
+
+
+
+        public enum NavigationSide
+        {
+            Left,
+            Right
+        }
 
 
     }
