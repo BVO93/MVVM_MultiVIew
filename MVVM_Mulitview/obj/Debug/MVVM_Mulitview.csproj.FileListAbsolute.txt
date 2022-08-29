@@ -47,3 +47,5 @@ C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\bin\Deb
 C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\obj\Debug\MVVM_Mulitview.csproj.CopyComplete
 C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\obj\Debug\View\ProductsView.g.cs
 C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\obj\Debug\View\ProductsView.baml
+C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\obj\Debug\View\SettingeView.g.cs
+C:\1_Programming\1_C#\1_ExampleResources\7_MVVM_Mulitview\MVVM_Mulitview\obj\Debug\View\SettingeView.baml

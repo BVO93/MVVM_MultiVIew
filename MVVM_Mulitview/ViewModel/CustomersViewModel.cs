@@ -31,6 +31,7 @@ namespace MVVM_Mulitview.ViewModel
         }
 
 
+
         // Observes when the collection is changed and gets update
         public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
 

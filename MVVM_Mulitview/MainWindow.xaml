@@ -14,7 +14,10 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ProductsViewModel}">
             <view:ProductsView/>
-        </DataTemplate> 
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <view:SettingeView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -33,6 +36,9 @@
                 <MenuItem Header="_Products"
                   Command= "{Binding SelectViewModelCommand}"
                   CommandParameter="{Binding ProductsViewModel}"/>
+                <MenuItem Header="_Settings"
+                  Command= "{Binding SelectViewModelCommand}"
+                  CommandParameter="{Binding SettingsViewModel}"/>
             </MenuItem>
         </Menu>
 

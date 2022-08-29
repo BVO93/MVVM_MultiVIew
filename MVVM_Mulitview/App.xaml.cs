@@ -8,7 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using MVVM_Mulitview.Model;
 
 namespace MVVM_Mulitview
 {
@@ -30,9 +30,11 @@ namespace MVVM_Mulitview
             services.AddTransient<MainViewModel>();
             services.AddTransient<CustomersViewModel>();
             services.AddTransient<ProductsViewModel>();
+            services.AddTransient<SettingsViewModel>();
 
             services.AddTransient<ICustomerDataProvider, CustomerDataProvider>();
             services.AddTransient<IProductDataProvider, ProductDataProvider>();
+            
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -43,11 +45,16 @@ namespace MVVM_Mulitview
             // mainWindow?.Show();
 
 
+            Settings setAtStartup = new Settings();
+            setAtStartup.Location = "TesVersion";
+            setAtStartup.TestVersion = true;
+
             // More simple option
             var mainWindow = new MainWindow(new MainViewModel(
                new CustomersViewModel(new CustomerDataProvider()),
-               new ProductsViewModel(new ProductDataProvider())
-               ));
+               new ProductsViewModel(new ProductDataProvider()), 
+               new SettingsViewModel())
+               );
 
             mainWindow?.Show();
         }

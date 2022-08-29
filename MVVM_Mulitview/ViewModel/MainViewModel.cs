@@ -11,11 +11,12 @@ namespace MVVM_Mulitview.ViewModel
 
         private ViewModelBase? _selectedViewModel;
 
-        public MainViewModel(CustomersViewModel customersViewModel, ProductsViewModel productsViewModel)
+        public MainViewModel(CustomersViewModel customersViewModel, ProductsViewModel productsViewModel, SettingsViewModel settingsViewModel)
         {
             CustomersViewModel = customersViewModel;
             ProductsViewModel = productsViewModel;
             SelectedViewModel = CustomersViewModel;
+            SettingsViewModel = settingsViewModel;
 
             SelectViewModelCommand = new DelegateCommand(SelectViewModel);
 
@@ -31,6 +32,8 @@ namespace MVVM_Mulitview.ViewModel
 
         public ProductsViewModel ProductsViewModel { get; }
         public CustomersViewModel CustomersViewModel { get; }
+
+        public SettingsViewModel SettingsViewModel { get; }
 
         public ViewModelBase SelectedViewModel
         {

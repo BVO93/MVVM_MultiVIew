@@ -13,6 +13,8 @@ namespace MVVM_Mulitview.ViewModel
         public ProductsViewModel(IProductDataProvider productDataProvider)
         {
             _productDataProvider = productDataProvider;
+
+            //Products.Add(new Product { Name = "Cappuccino", Description = "Espresso with milk and milk foam" });
         }
 
         public ObservableCollection<Product> Products { get; } = new();
