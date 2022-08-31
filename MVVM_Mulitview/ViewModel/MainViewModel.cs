@@ -26,8 +26,22 @@ namespace MVVM_Mulitview.ViewModel
         {
 
             SelectedViewModel = parameter as ViewModelBase;
+
+            Location = SettingsViewModel.Location;
+
             await LoadAsync();
 
+        }
+
+
+        public string Location
+        {
+            get => SettingsViewModel.Location;
+            set
+            {
+                SettingsViewModel.Location = value;
+                RaisePropretyChanged();
+            }
         }
 
         public ProductsViewModel ProductsViewModel { get; }
@@ -47,6 +61,9 @@ namespace MVVM_Mulitview.ViewModel
 
         }
 
+
+
+   
 
         public DelegateCommand SelectViewModelCommand { get; }
 

@@ -76,8 +76,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="Data\CustomerDataProvider.cs" />
-    <Compile Include="Data\ProductDataProvider.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Settings.cs" />

@@ -1,7 +1,6 @@
 ﻿#nullable enable 
 
 using MVVM_Mulitview.Command;
-using MVVM_Mulitview.Data;
 using MVVM_Mulitview.Model;
 using System;
 using System.Collections.Generic;
@@ -14,26 +13,29 @@ namespace MVVM_Mulitview.ViewModel
 {
     public class CustomersViewModel : ViewModelBase
     {
-        // Providing data from dataProvider
-        private readonly ICustomerDataProvider _customerDataProvider;
-
-
+        // Observes when the collection is changed and gets update
+        public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
 
         private CustomerItemViewModel? _selectedCustomer;
         private NavigationSide _navigationSide;
 
-        public CustomersViewModel(ICustomerDataProvider customerDataProvider)
+        public CustomersViewModel()
         {
-            _customerDataProvider = customerDataProvider;
+        
             AddCommand = new DelegateCommand(Add);
             MoveNavigationCommand = new DelegateCommand(MoveNavigation);
             DeleteCommand = new DelegateCommand(Delete, CanDelete);
+
+            var customer = new Customer { FirstName = "Bjorn", LastName = "VO", IsDeveloper = false };
+            var viewModel = new CustomerItemViewModel(customer);
+            Customers.Add(viewModel);
+             customer = new Customer { FirstName = "John", LastName = "Do", IsDeveloper = true };
+             viewModel = new CustomerItemViewModel(customer);
+            Customers.Add(viewModel);
+
         }
 
 
-
-        // Observes when the collection is changed and gets update
-        public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
 
         // ? can be null
         public CustomerItemViewModel? SelectedCustomer
@@ -71,22 +73,11 @@ namespace MVVM_Mulitview.ViewModel
 
         public async override Task LoadAsync()
         {
-            // Check if there is already anyting in customers.
-            if (Customers.Any())
-            {
-                return;
-            }
-            // GetAllAsync is method of dataProvider
-            var customers = await _customerDataProvider.GetAllAsync();
-            if (customers is not null)
-            {
-                foreach (var customer in customers)
-                {
-                    Customers.Add(new CustomerItemViewModel(customer));
-                }
-            }
 
+            return;
         }
+
+
 
         // Adding customer 
         private void Add(object? parameter)

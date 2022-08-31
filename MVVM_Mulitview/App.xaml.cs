@@ -1,4 +1,4 @@
-﻿using MVVM_Mulitview.Data;
+﻿
 using MVVM_Mulitview.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -31,18 +31,14 @@ namespace MVVM_Mulitview
             services.AddTransient<CustomersViewModel>();
             services.AddTransient<ProductsViewModel>();
             services.AddTransient<SettingsViewModel>();
-
-            services.AddTransient<ICustomerDataProvider, CustomerDataProvider>();
-            services.AddTransient<IProductDataProvider, ProductDataProvider>();
-            
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            //var mainWindow = _serviceProvider.GetService<MainWindow>();
-            // mainWindow?.Show();
+          //  var mainWindow = _serviceProvider.GetService<MainWindow>();
+          //   mainWindow?.Show();
 
 
             Settings setAtStartup = new Settings();
@@ -51,13 +47,16 @@ namespace MVVM_Mulitview
 
             // More simple option
             var mainWindow = new MainWindow(new MainViewModel(
-               new CustomersViewModel(new CustomerDataProvider()),
-               new ProductsViewModel(new ProductDataProvider()), 
+               new CustomersViewModel(),
+               new ProductsViewModel(), 
                new SettingsViewModel())
                );
 
             mainWindow?.Show();
-        }
+        
+
+            
+            }
 
     }
 }
