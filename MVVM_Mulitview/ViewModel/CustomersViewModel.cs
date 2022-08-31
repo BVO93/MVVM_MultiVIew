@@ -25,6 +25,8 @@ namespace MVVM_Mulitview.ViewModel
             AddCommand = new DelegateCommand(Add);
             MoveNavigationCommand = new DelegateCommand(MoveNavigation);
             DeleteCommand = new DelegateCommand(Delete, CanDelete);
+            SaveCustomersCommand = new DelegateCommand(SaveCustomers);
+
 
             var customer = new Customer { FirstName = "Bjorn", LastName = "VO", IsDeveloper = false };
             var viewModel = new CustomerItemViewModel(customer);
@@ -71,6 +73,8 @@ namespace MVVM_Mulitview.ViewModel
         public DelegateCommand MoveNavigationCommand { get; }
         public DelegateCommand DeleteCommand { get; }
 
+        public DelegateCommand SaveCustomersCommand { get;  }
+
         public async override Task LoadAsync()
         {
 
@@ -114,6 +118,15 @@ namespace MVVM_Mulitview.ViewModel
             }
         }
 
+        private void SaveCustomers(object? parameter)
+        {
+            
+            // HERE I SHOULD GET THE LOCATION TO SAVE TO. So i can save all the customers in the collection.
+
+
+            return;
+
+        }
 
         private bool CanDelete(object? parameter)
         {

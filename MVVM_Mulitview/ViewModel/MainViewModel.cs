@@ -44,6 +44,7 @@ namespace MVVM_Mulitview.ViewModel
             }
         }
 
+
         public ProductsViewModel ProductsViewModel { get; }
         public CustomersViewModel CustomersViewModel { get; }
 
